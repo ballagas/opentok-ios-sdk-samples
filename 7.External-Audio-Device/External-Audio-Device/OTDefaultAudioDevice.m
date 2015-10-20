@@ -42,6 +42,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
+static double kPreferredIOBufferDuration = 0.01;
 
 static mach_timebase_info_data_t info;
 
@@ -383,6 +384,8 @@ static void print_error(const char* error, OSStatus code) {
     
     [mySession setPreferredSampleRate: kSampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
+    [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
+                                      error:nil];
     
     NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers |
                               AVAudioSessionCategoryOptionDefaultToSpeaker |
